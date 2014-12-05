@@ -75,25 +75,164 @@
             <section>
                 <h2>Installation</h2>
                 <ul class="fragment">
-                    <li>Linux : apt-get install php5-debug (ou par pecl)
-                    <li>Mac : Activer l'extention dans MAMP</li>
-                    <li>Windows : Activer l'extention dans WAMP</li>
+                    <li class about="fragment">Linux <span class="fragment">: apt-get install php5-debug (ou par pecl)</span></li>
+                    <li class="fragment">MAC <span class="fragment">: Activer l'extention dans MAMP</span></li>
+                    <li class="fragment">Windows <span class="fragment">: OSEF</span></li>
                 </ul>
                 <br><br>
                 <p class="fragment">Et bien sure, on modifie le php.ini</p>
                 <pre class="fragment">
-                    <code data-trim contenteditable>
-                        [Xdebug]
+                    <code>
+[Xdebug]
 zend_extension=/path/to/xdebug.so
                     </code>
                 </pre>
                 <span class="fragment">(find . -name xdebug.so -print)</span>
             </section>
-
+            <!-- SLIDE 5 -->
             <section>
-                <section>Test Haut</section>
-                <section>test BAS</section>
+                <section>
+                    <h2>Affichage des erreurs</h2>
+                    <pre>
+                        <code>
+                            $a = 1;
+                            $b = 2;
+                            echo $x;
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <p>Configuration standard</p>
+                    <img src="images/std-error.png" />
+                </section>
+                <section>
+                    <p>Configuration affichage des variables</p>
+                    <pre>
+                        <code>
+[Xdebug]
+xdebug.show_local_vars=1
+                        </code>
+
+                    </pre>
+                    <img src="images/erroWithDisplayedVariables.png" />
+                </section>
+                <section>
+                    <p>Configuration affichage des variables superglobales</p>
+                    <pre>
+                        <code>
+[Xdebug]
+xdebug.dump.GET=*
+xdebug.dump.SERVER=*
+                        </code>
+
+                    </pre>
+                    <img src="images/superGlobalsErrors.png" />
+                </section>
+                <section>
+                    <p>Configuration affichage des variables superglobales</p>
+                    <pre>
+                        <code>
+[Xdebug]
+xdebug.dump.GET=*
+xdebug.dump.SERVER=REMOTE_ADDR, SERVER_NAME
+                        </code>
+
+                    </pre>
+                    <img src="images/superGlobalsErrorsLigth.png" />
+                </section>
             </section>
+            <!-- SLIDE 6 -->
+            <section>
+                <section>
+                    <h2>var_dump</h2>
+                </section>
+                <section>
+                    <pre>
+                        <code style="max-height: inherit">
+class test {
+    public $pub = false;
+    private $priv = true;
+    protected $prot = 42;
+}
+$t = new test;
+$t->pub = $t;
+$data = array(
+    'one' => 'a somewhat long string!',
+    'two' => array(
+        'two.one' => array(
+            'two.one.zero' => 210,
+            'two.one.one' => array(
+                'two.one.one.zero' => 3.141592564,
+                'two.one.one.one'  => 2.7,
+            ),
+        ),
+    ),
+    'three' => $t,
+    'four' => range(0, 5),
+);
+var_dump( $data );
+                        </code>
+                    </pre>
+
+                </section>
+                <section>
+                    <img src="images/vardump.png" />
+                </section>
+                <section>
+                    <h2>Paramétrage du var_dump() à la volée avec ini_set()</h2>
+                    <ul class="fragment">
+                        <li class="fragment">xdebug.var_display_max_children</li>
+                        <li class="fragment">xdebug.var_display_max_data</li>
+                        <li class="fragment">xdebug.var_display_max_depth</li>
+                    </ul>
+                </section>
+                <section>
+                    <img src="images/vardumpChildren.png" /> <br>
+                    <img src="images/vardumData.png" />
+                </section>
+            </section>
+            <!-- SLIDE 7 -->
+            <section>
+                <section>
+
+                    <h2>Stack trace</h2>
+                    <pre class="fragment">
+                        <code>
+class Chat {
+    public function pousseUnCri() {
+        echo CRI;
+    }
+}
+
+require_once('Chat.php');
+$garfield = new Chat('Garfield');
+$garfield->pousseUnCri();
+                        </code>
+                    </pre>
+                        <img class="fragment" src="images/stackTrace.png" />
+                    </section>
+                    <section>
+                        <pre>
+                            <code>
+ini_set('xdebug.collect_params', 3);
+ini_set('xdebug.show_mem_delta', 1);
+ini_set('xdebug.trace_format', 2); // export au format html
+xdebug_start_trace();
+$str = "Xdebug";
+function ret_ord( $c ) {
+    return ord( $c );
+}
+
+foreach ( str_split( $str ) as $char ) {
+    echo $char, ": ", ret_ord( $char ), "\n";
+}
+xdebug_stop_trace();
+                            </code>
+                        </pre>
+                        <img class="fragment" src="images/stackTrace2.png">
+                    </section>
+            </section>
+
             <!-- LAST SLIDE -->
             <section>
                 <h1>Merci</h1>
@@ -162,3 +301,15 @@ zend_extension=/path/to/xdebug.so
 
     </body>
 </html>
+xdebug_start_trace();
+$str = "Xdebug";
+function ret_ord( $c )
+{
+return ord( $c );
+}
+
+foreach ( str_split( $str ) as $char )
+{
+echo $char, ": ", ret_ord( $char ), "\n";
+}
+xdebug_stop_trace();

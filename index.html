@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Debug like a boss with Xdebug</title>
+
+        <meta name="description" content="Debug like a boss with Xdebug">
+        <meta name="author" content="Gaetan BUELLET">
+
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if (window.location.search.match(/print-pdf/gi)) {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName('head')[0].appendChild(link);
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+        <!-- SLIDE 1 -->
+        <div class="slides">
+            <section>
+                <h1>Debug like a Boss <br>avec<br> XDEBUG</h1>
+
+                <p> <a href="http://twitter.com/gaetanbuellet">@gaetanbuellet</a></small> </p>
+            </section>
+
+        <!-- SLIDE 2 -->
+            <section>
+                <h2>XDebug ? De quoi c'est</h2>
+
+                <p class="fragment"></p>
+                    <span class="fragment">Une extention PHP</span>
+            </section>
+
+            <!-- SLIDE 3 -->
+            <section>
+                <h2>Et ça m'apporte quoi ? </h2>
+
+                <p class="fragment"></p>
+                <ul>
+                    <li class="fragment">Affichage des erreurs <span class="fragment">(Mais en plus joli)</span> </li>
+                    <li class="fragment">var_dump amélioré</li>
+                    <li class="fragment">Stack trace</li>
+                    <li class="fragment">Code coverage</li>
+                    <li class="fragment">Profiling</li>
+                    <li class="fragment">Remote Debugging</li>
+                </ul>
+            </section>
+
+            <!-- SLIDE 4 -->
+            <section>
+                <h2>Installation</h2>
+                <ul class="fragment">
+                    <li>Linux : apt-get install php5-debug (ou par pecl)
+                    <li>Mac : Activer l'extention dans MAMP</li>
+                    <li>Windows : Activer l'extention dans WAMP</li>
+                </ul>
+                <br><br>
+                <p class="fragment">Et bien sure, on modifie le php.ini</p>
+                <pre class="fragment">
+                    <code data-trim contenteditable>
+                        [Xdebug]
+zend_extension=/path/to/xdebug.so
+                    </code>
+                </pre>
+                <span class="fragment">(find . -name xdebug.so -print)</span>
+            </section>
+
+            <section>
+                <section>Test Haut</section>
+                <section>test BAS</section>
+            </section>
+            <!-- LAST SLIDE -->
+            <section>
+                <h1>Merci</h1>
+
+                <h3>Des questions ?</h3>
+            </section>
+        </div>
+    </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                {
+                    src: 'lib/js/classList.js', condition: function () {
+                    return !document.body.classList;
+                }
+                },
+                {
+                    src: 'plugin/markdown/marked.js', condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+                },
+                {
+                    src: 'plugin/markdown/markdown.js', condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+                },
+                {
+                    src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+                },
+                {
+                    src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                    return !!document.body.classList;
+                }
+                },
+                {
+                    src: 'plugin/notes/notes.js', async: true, condition: function () {
+                    return !!document.body.classList;
+                }
+                }
+            ]
+        });
+
+    </script>
+
+    </body>
+</html>

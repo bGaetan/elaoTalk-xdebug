@@ -232,6 +232,20 @@ xdebug_stop_trace();
                         <img class="fragment" src="images/stackTrace2.png">
                     </section>
             </section>
+            <!-- SLIDE 8 -->
+            <section>
+                <h2>Profiler</h2>
+                <pre>
+                    <code>
+[Xdebug]
+xdebug.profiler_enable = 1
+xdebug.profiler_append = 1
+xdebug.profiler_output_dir = /tmp
+xdebug.profiler_output_name = cachegrind.out.%p
+                    </code>
+                </pre>
+
+            </section>
 
             <!-- LAST SLIDE -->
             <section>
@@ -301,15 +315,3 @@ xdebug_stop_trace();
 
     </body>
 </html>
-xdebug_start_trace();
-$str = "Xdebug";
-function ret_ord( $c )
-{
-return ord( $c );
-}
-
-foreach ( str_split( $str ) as $char )
-{
-echo $char, ": ", ret_ord( $char ), "\n";
-}
-xdebug_stop_trace();

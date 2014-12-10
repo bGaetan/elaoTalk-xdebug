@@ -44,14 +44,14 @@
         <div class="slides">
             <section>
                 <h1>Debug like a Boss <br>avec<br> XDEBUG</h1>
-
+                <img src="images/chasseAuxBug.jpg" />
                 <p> <a href="http://twitter.com/gaetanbuellet">@gaetanbuellet</a></small> </p>
             </section>
 
         <!-- SLIDE 2 -->
             <section>
                 <h2>XDebug ? De quoi c'est</h2>
-
+                <img src="images/cestquoi.jpg">
                 <p class="fragment"></p>
                     <span class="fragment">Une extention PHP</span>
             </section>
@@ -246,7 +246,41 @@ xdebug.profiler_output_name = cachegrind.out.%p
                 </pre>
 
             </section>
+            <section>
+                <section>
+                    <h2>Remote debug</h2>
+                    <img class="fragment" src="images/codeDebug.jpg" />
+                </section>
+                <section>
+                    <h2>Configuration</h2>
+                    <pre class="fragment">
+                        <code>
+[Xdebug]
+xdebug.remote_enable = 1 (default 0)
+xdebug.remote_host = localhost
+xdebug.remote_port = 9000
+xdebug.remote_cookie_expire_time = 3600
+xdebug.remote_mode = req ou jit (default req)
+                        </code>
+                    </pre>
+                </section>
+                <section>
 
+                    <h2>Ligne de commande</h2>
+                    <pre>
+                        <code>
+export XDEBUG_CONFIG="idekey=session_name"
+php myscript.php
+                        </code>
+                    </pre>
+                    <pre>
+                        <code style="font-size: 0.8em">
+export XDEBUG_CONFIG="idekey=session_name remote_host=localhost profiler_enable=1
+                        </code>
+                    </pre>
+                </section>
+
+            </section>
             <!-- LAST SLIDE -->
             <section>
                 <h1>Merci</h1>
